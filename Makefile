@@ -6,12 +6,12 @@
 #    By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/22 13:08:10 by enrgil-p          #+#    #+#              #
-#    Updated: 2025/06/22 14:44:28 by enrgil-p         ###   ########.fr        #
+#    Updated: 2025/06/22 18:52:46 by enrgil-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
-SOURCES =	main.c\
+SOURCES =	main.c main_utils.c\
 
 LIBFT_DIR = ./libft
 LIBFT  = $(LIBFT_DIR)/libft.a
@@ -26,13 +26,13 @@ RM = rm -f
 
 all: $(NAME)
 
+$(LIBFT):
+	@make -C $(LIBFT_DIR)
+	$(info CREATED $(LIBFT))
+
 $(NAME): $(LIBFT) $(OBJECTS)
 	$(CC) $(CFLAGS) $(SOURCES) $(LIBFT_FLAG) -o $(NAME)
 	$(info CREATED $(NAME))
-
-$(LIBFT):
-	make -C $(LIBFT_DIR)
-	$(info CREATED $(LIBFT))
 
 fsanitize: $(NAME)
 	
@@ -41,14 +41,14 @@ fsanitize: $(NAME)
 
 clean:
 	$(RM) $(OBJECTS)
-	make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 	$(info REMOVED OBJECTS AND LIBFT/OBJECTS)
 
 compclean: all clean
 
 fclean: clean
 	$(RM) $(NAME)
-	make -C $(LIBFT_DIR) fclean
+	@make -C $(LIBFT_DIR) fclean
 	$(info REMOVED $(NAME) AND -IN CASE THESE EXISTED YET- OBJECTS)
 
 re: fclean all
