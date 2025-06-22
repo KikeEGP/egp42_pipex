@@ -6,7 +6,7 @@
 #    By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/22 13:08:10 by enrgil-p          #+#    #+#              #
-#    Updated: 2025/06/22 13:08:15 by enrgil-p         ###   ########.fr        #
+#    Updated: 2025/06/22 14:44:28 by enrgil-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,10 @@ SOURCES =	main.c\
 LIBFT_DIR = ./libft
 LIBFT  = $(LIBFT_DIR)/libft.a
 
-OBJECTS = $(SOURCES: .c=.o)
+OBJECTS = $(SOURCES:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror -g
+SANIT_FLAG = -fsanitize=address
 LIBFT_FLAG = -L $(LIBFT_DIR) -l ft
 CC = cc
 RM = rm -f
@@ -32,6 +33,11 @@ $(NAME): $(LIBFT) $(OBJECTS)
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 	$(info CREATED $(LIBFT))
+
+fsanitize: $(NAME)
+	
+	$(CC) $(CFLAGS) $(SANIT_FLAG) $(SOURCES) $(LIBFT_FLAG) -o $(NAME)
+	$(info CREATED $(NAME) with fsanitize)
 
 clean:
 	$(RM) $(OBJECTS)
@@ -47,4 +53,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re compclean
+.PHONY: all clean fclean re fsanitize compclean
