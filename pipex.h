@@ -1,35 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/22 13:39:23 by enrgil-p          #+#    #+#             */
-/*   Updated: 2025/06/22 13:41:45 by enrgil-p         ###   ########.fr       */
+/*   Created: 2025/06/22 13:40:19 by enrgil-p          #+#    #+#             */
+/*   Updated: 2025/06/22 13:41:37 by enrgil-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int argc, char **argv)
-{
-	if (argc == 5)
-	{
-		pid_t	fork_pid;
 
-		/* <file1 command1 | command2 >file2
-		 *
-		 * These are the expected arguments for pipex
-		 *
-		 *
-		 * */
-	/*	*	* PARSE	*	*	*/
-		//1) file1 exists? path to command1? 
-			//argv[2][0] is a "|"?	
-			//What about command2 and file2?
-		//2)
-	/*	*	Next step	*	*/
-		return (0);//correct execution, end
-	}
-	return (1);//wrong execution
-
-}
