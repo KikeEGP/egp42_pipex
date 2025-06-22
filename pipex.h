@@ -6,7 +6,7 @@
 /*   By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 13:40:19 by enrgil-p          #+#    #+#             */
-/*   Updated: 2025/06/22 19:33:47 by enrgil-p         ###   ########.fr       */
+/*   Updated: 2025/06/22 19:50:47 by enrgil-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft/complete_libft.h"
 # include <unistd.h>
+# include <fcntl.h>
 # include <sys/wait.h>
 
 typedef struct	s_pipex_data
