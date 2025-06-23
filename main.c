@@ -6,7 +6,7 @@
 /*   By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 13:39:23 by enrgil-p          #+#    #+#             */
-/*   Updated: 2025/06/22 20:50:40 by enrgil-p         ###   ########.fr       */
+/*   Updated: 2025/06/23 21:46:25 by enrgil-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static int	pipe_and_execute_cmds(t_pipex_data pipex_data)
 	if (pid_cmd_1 == -1)
 		error_happened(-1, "fork for cmd_1");
 	else if (pid_cmd_1 == 0)
-		execute_cmd_1(pipex_data);
+		execute_cmd_1(pipex_data, pipe_fd);
 	pid_cmd_2 = fork();
 	if (pid_cmd_2 == -1)
 		error_happened(-1, "fork for cmd_2");
 	else if (pid_cmd_2 == 0)
-		execute_cmd_2(pipex_data);
+		execute_cmd_2(pipex_data, pipe_fd);
 	if (close(pipe_fd[0]) == -1 || close(pipe_fd[1] == -1))
 		error_happened(-1, "close() in *pipe_fd");
 	waitpid(pid_cmd_1, &wstatus, 0);
