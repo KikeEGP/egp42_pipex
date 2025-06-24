@@ -6,7 +6,7 @@
 /*   By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 18:37:22 by enrgil-p          #+#    #+#             */
-/*   Updated: 2025/06/22 21:10:30 by enrgil-p         ###   ########.fr       */
+/*   Updated: 2025/06/24 19:59:07 by enrgil-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	error_happened(int failure, char *place)
 		ft_putstr_fd("Fail executing ", 2);
 		ft_putendl_error(place);
 	}
-	exit(EXIT_FAILURE)
+	exit(EXIT_FAILURE);
 }
 
 void	storage_data(t_pipex_data *ppx_d, char **argv, char **enviroment_list)

@@ -6,7 +6,7 @@
 /*   By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 13:39:23 by enrgil-p          #+#    #+#             */
-/*   Updated: 2025/06/24 18:39:02 by enrgil-p         ###   ########.fr       */
+/*   Updated: 2025/06/24 20:15:16 by enrgil-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,12 @@ static int	pipe_and_execute_cmds(t_pipex_data pipex_data)
 	pid_cmd_1 = fork();
 	if (pid_cmd_1 == -1)
 		error_happened(-1, "fork for cmd_1");
-	else if (pid_cmd_1 == 0)
+	if (pid_cmd_1 == 0)
 		execute_cmd_1(pipex_data, pipe_fd);
-	else
-		pid_cmd_2 = fork();//Inside here, only parent would enter
+	pid_cmd_2 = fork();
 	if (pid_cmd_2 == -1)
 		error_happened(-1, "fork for cmd_2");
-	else if (pid_cmd_2 == 0)
+	if (pid_cmd_2 == 0)
 		execute_cmd_2(pipex_data, pipe_fd);
 	if (close(pipe_fd[0]) == -1 || close(pipe_fd[1] == -1))
 		error_happened(-1, "close() in *pipe_fd");
@@ -48,7 +47,7 @@ int	main(int argc, char **argv, char **enviroment_list)
 	t_pipex_data	pipex_data;
 	int				status;
 
-	if (argc == 5)
+	if (argc != 5)
 		error_happened(0, NULL);
 	storage_data(&pipex_data, argv, enviroment_list);
 	status = pipe_and_execute_cmds(pipex_data);

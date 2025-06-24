@@ -6,13 +6,13 @@
 /*   By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 21:51:47 by enrgil-p          #+#    #+#             */
-/*   Updated: 2025/06/24 19:23:38 by enrgil-p         ###   ########.fr       */
+/*   Updated: 2025/06/24 20:12:43 by enrgil-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*join_cmd_and_path(char *cmd, char *route_tested)
+static char	*join_cmd_and_path(char *cmd, char *route_tested)
 {
 	char	*aux;
 	char	*result;
@@ -30,15 +30,15 @@ char	*join_cmd_and_path(char *cmd, char *route_tested)
 	return (result);
 }
 
-char	*check_access_cmd(char *cmd, char **path_splitted)
+static char	*check_access_cmd(char *cmd, char **path_splitted)
 {
 	char	*route;
 	char	*testing_route;
-	int	access_returned;
+	int		access_returned;
 
 	route = NULL;
 	access_returned = -1;
-	while (access_returned == -1 && *path_splitted != '\0')
+	while (access_returned == -1 && *path_splitted != NULL)
 	{
 		testing_route = join_cmd_and_path(cmd, *path_splitted);
 		if (testing_route == NULL)
@@ -59,13 +59,13 @@ char	*find_path(char *cmd, char **envp)
 	route = NULL;
 	path_splitted = NULL;
 	if (cmd[0] == '/' || ft_strchr(cmd, 47))
-		return(cmd);
-	while (*envp != '\0' && !ft_strnstr(*envp, "PATH=", 5))
+		return (cmd);
+	while (*envp != NULL && !ft_strnstr(*envp, "PATH=", 5))
 		(*envp)++;
-	if (*envp != '\0')
+	if (*envp != NULL)
 	{
 		path_splitted = ft_split(*envp, ':');
-		route = check_acces_cmd(cmd, path_splitted);
+		route = check_access_cmd(cmd, path_splitted);
 	}
 	return (route);
 }
