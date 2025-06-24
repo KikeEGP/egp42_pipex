@@ -6,12 +6,12 @@
 #    By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/22 13:08:10 by enrgil-p          #+#    #+#              #
-#    Updated: 2025/06/22 18:52:46 by enrgil-p         ###   ########.fr        #
+#    Updated: 2025/06/24 19:38:09 by enrgil-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
-SOURCES =	main.c main_utils.c\
+SOURCES =	main.c utils_and_error.c childs.c manage_path.c\
 
 LIBFT_DIR = ./libft
 LIBFT  = $(LIBFT_DIR)/libft.a
