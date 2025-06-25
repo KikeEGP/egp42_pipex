@@ -29,6 +29,7 @@ typedef struct s_pipex_data
 }	t_pipex_data;
 /*	*	*	*   utils_and_error.c	*	*	*	*/
 void	storage_data(t_pipex_data *ppx_d, char **argv, char **enviroment_list);
+void 	free_cmd(char **cmd);
 void	error_happened(int failure, char *place);
 /*	*	*	*	*	*	*	*	*	*/
 /*									*/

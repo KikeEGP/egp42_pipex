@@ -63,6 +63,9 @@ char	*find_path(char *cmd, char **envp)
 
 	route = NULL;
 	path_splitted = NULL;
+	
+	if (cmd == NULL)
+		return (NULL);
 	if (cmd[0] == '/' || ft_strchr(cmd, 47))
 		return (cmd);
 	// while (*envp != NULL && !ft_strnstr(*envp, "PATH=", 5))
@@ -80,7 +83,7 @@ char	*find_path(char *cmd, char **envp)
 		if (ft_strnstr(envp[i], "PATH=", 5) != NULL)
 		{
 			res = ft_strdup(envp[i]);
-			dprintf(2, "%s\n", envp[i]);
+			// dprintf(2, "%s\n", envp[i]);
 		}
 		i++;
 	}

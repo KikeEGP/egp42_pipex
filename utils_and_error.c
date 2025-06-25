@@ -25,6 +25,16 @@ void	error_happened(int failure, char *place)
 	exit(EXIT_FAILURE);
 }
 
+void free_cmd(char **cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i] > 0)
+		free(cmd[i++]);
+	free(cmd);
+}
+
 void	storage_data(t_pipex_data *ppx_d, char **argv, char **enviroment_list)
 {
 	ppx_d->cmd_1 = ft_split(argv[2], 32);

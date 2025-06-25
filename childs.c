@@ -47,11 +47,16 @@ void	execute_cmd_2(t_pipex_data pipex_data, int *pipe_fd)
 	//write(2, "hiX\n", 4);
 	if (path_to_execute)
 	{
-		execve(path_to_execute, pipex_data.cmd_1, pipex_data.envp);
+		execve(path_to_execute, pipex_data.cmd_2, pipex_data.envp);
 		free(path_to_execute);
 	}
-	ft_putstr_fd(pipex_data.cmd_2[0], 2);
-	ft_putendl_error(": command not found");
+	if (pipex_data.cmd_2[0] == 0)
+		ft_putendl_error("Command '' not found");	
+	else
+	{
+		ft_putstr_fd(pipex_data.cmd_2[0], 2);
+		ft_putendl_error(": command not found");
+	}
 	exit(127);
 }
 
@@ -93,7 +98,12 @@ void	execute_cmd_1(t_pipex_data pipex_data, int *pipe_fd)
 		execve(path_to_execute, pipex_data.cmd_1, pipex_data.envp);
 		free(path_to_execute);
 	}
-	ft_putstr_fd(pipex_data.cmd_1[0], 2);
-	ft_putendl_error(": command not found");
+	if (pipex_data.cmd_1[0] == 0)
+		ft_putendl_error("Command '' not found");	
+	else
+	{
+		ft_putstr_fd(pipex_data.cmd_1[0], 2);
+		ft_putendl_error(": command not found");
+	}
 	exit(127);
 }
