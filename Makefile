@@ -18,7 +18,7 @@ LIBFT  = $(LIBFT_DIR)/libft.a
 
 OBJECTS = $(SOURCES:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g3
 SANIT_FLAG = -fsanitize=address
 LIBFT_FLAG = -L $(LIBFT_DIR) -l ft
 CC = cc

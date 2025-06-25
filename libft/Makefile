@@ -34,7 +34,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c\
 OBJS = $(SRCS:.c=.o)
 
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 CC = cc 
 RM = rm -f
 
