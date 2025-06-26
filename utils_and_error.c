@@ -6,7 +6,7 @@
 /*   By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 18:37:22 by enrgil-p          #+#    #+#             */
-/*   Updated: 2025/06/26 20:55:21 by enrgil-p         ###   ########.fr       */
+/*   Updated: 2025/06/26 21:48:44 by enrgil-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	error_happened(int failure, char *place)
 	exit(EXIT_FAILURE);
 }
 
-void	close_one_fd_and_display_error(int fd, int fail, char *place)
+void	close_a_fd_and_set_error(int fd, int fail, char *place)
 {
 	close(fd);
 	error_happened(fail, place);
 }
 
-void	close_two_fds_and_display_error(int fd1, int fd2 int fail, char *place)
+void	close_fds_and_set_error(int fd1, int fd2 int fail, char *place)
 {
 	close(fd1);
 	close(fd2);
