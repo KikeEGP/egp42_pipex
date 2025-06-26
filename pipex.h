@@ -6,7 +6,7 @@
 /*   By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 13:40:19 by enrgil-p          #+#    #+#             */
-/*   Updated: 2025/06/24 20:05:07 by enrgil-p         ###   ########.fr       */
+/*   Updated: 2025/06/26 22:19:07 by enrgil-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_pipex_data
 void	storage_data(t_pipex_data *ppx_d, char **argv, char **enviroment_list);
 void 	free_cmd(char **cmd);
 void	error_happened(int failure, char *place);
+void	close_a_fd_and_set_error(int fd, int fail, char *place);
+void	close_fds_and_set_error(int fd1, int fd2, int fail, char *place);
 /*	*	*	*	*	*	*	*	*	*/
 /*									*/
 /*	*	*	* 	childs.c	*	*	*	*/
