@@ -6,7 +6,7 @@
 /*   By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 13:39:23 by enrgil-p          #+#    #+#             */
-/*   Updated: 2025/06/26 22:08:18 by enrgil-p         ###   ########.fr       */
+/*   Updated: 2025/06/26 22:24:09 by enrgil-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static int	pipe_and_execute_cmds(t_pipex_data pipex_data)
 	close(pipe_fd[1]);
 	waitpid(pid_cmd_1, &wstatus, 0);
 	waitpid(pid_cmd_2, &wstatus, 0);
+	ft_printf("\thELLO!!\n");//debug
 	return (WEXITSTATUS(wstatus));
 }
 
@@ -54,5 +55,6 @@ int	main(int argc, char **argv, char **enviroment_list)
 	status = pipe_and_execute_cmds(pipex_data);
 	free_cmd(pipex_data.cmd_1);
 	free_cmd(pipex_data.cmd_2);
+	ft_printf("HELLO!!\n");//debug
 	return (status);
 }

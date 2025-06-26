@@ -6,7 +6,7 @@
 /*   By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 19:07:36 by enrgil-p          #+#    #+#             */
-/*   Updated: 2025/06/26 20:45:48 by enrgil-p         ###   ########.fr       */
+/*   Updated: 2025/06/26 22:25:32 by enrgil-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	execute_cmd_1(t_pipex_data pipex_data, int *pipe_fd)
 		close(pipe_fd[1]);
 		error_happened(-1, "close pipe_fd[0] in cmd_1");
 	}
+	ft_printf("\t\tHEllO!!\n");//debug
 	fd_infile = open(pipex_data.infile, O_RDONLY);
 	if (fd_infile == -1)
 	{
