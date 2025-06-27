@@ -6,7 +6,7 @@
 /*   By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 21:51:47 by enrgil-p          #+#    #+#             */
-/*   Updated: 2025/06/27 19:14:23 by enrgil-p         ###   ########.fr       */
+/*   Updated: 2025/06/27 20:52:11 by enrgil-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static char	*check_access_cmd(char *cmd, char **path_splitted)
 			route = testing_route;
 		i++;
 		if (!route)
-			free(testing_route);//tryin
+			free(testing_route);
 	}
 	return (route);
 }
@@ -60,7 +60,7 @@ char	*find_path(char *cmd, char **envp)
 	char	*route;
 	char	*path_found;
 	char	**path_splitted;
-	int	i;
+	int		i;
 
 	route = NULL;
 	path_found = NULL;
