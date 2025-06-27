@@ -6,13 +6,13 @@
 /*   By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 18:37:22 by enrgil-p          #+#    #+#             */
-/*   Updated: 2025/06/27 18:45:27 by enrgil-p         ###   ########.fr       */
+/*   Updated: 2025/06/27 20:13:59 by enrgil-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	error_happened(int failure, char *place)
+void	error_happened(int failure, char *place, t_pipex_data pipex_data)
 {
 	ft_putstr_fd("Error. ", 2);
 	if (failure == 0)
@@ -22,20 +22,22 @@ void	error_happened(int failure, char *place)
 		ft_putstr_fd("Fail executing ", 2);
 		ft_putendl_error(place);
 	}
+	free_cmd(pipex_data.cmd_1);
+	free_cmd(pipex_data.cmd_2);
 	exit(EXIT_FAILURE);
 }
 
-void	close_a_fd_and_set_error(int fd, int fail, char *place)
+void	close_a_fd_and_error(int fd, char *place, t_pipex_data ppx_d)
 {
 	close(fd);
-	error_happened(fail, place);
+	error_happened(fail, place, ppx_d);
 }
 
-void	close_fds_and_set_error(int fd1, int fd2, int fail, char *place)
+void	close_fds_and_error(int fd1, int fd2, char *place, t_pipex_data ppx_d)
 {
 	close(fd1);
 	close(fd2);
-	error_happened(fail, place);
+	error_happened(fail, place, ppx_d);
 }
 
 void free_cmd(char **cmd)
