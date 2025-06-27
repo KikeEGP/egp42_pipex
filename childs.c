@@ -6,11 +6,25 @@
 /*   By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 19:07:36 by enrgil-p          #+#    #+#             */
-/*   Updated: 2025/06/26 22:25:32 by enrgil-p         ###   ########.fr       */
+/*   Updated: 2025/06/27 19:51:40 by enrgil-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+static void	command_not_found(char **cmd_executed, char **other_cmd)
+{
+	free_cmd(other_cmd);
+	if (cmd_executed[0] == 0)
+		ft_putendl_error("Command '' not found");	
+	else
+	{
+		ft_putstr_fd(cmd_executed[0], 2);
+		ft_putendl_error(": command not found");
+	}
+	free_cmd(cmd_executed);
+	exit(127);
+}
 
 void	execute_cmd_2(t_pipex_data pipex_data, int *pipe_fd)
 {
@@ -47,14 +61,7 @@ void	execute_cmd_2(t_pipex_data pipex_data, int *pipe_fd)
 		execve(path_to_execute, pipex_data.cmd_2, pipex_data.envp);
 		free(path_to_execute);
 	}
-	if (pipex_data.cmd_2[0] == 0)
-		ft_putendl_error("Command '' not found");	
-	else
-	{
-		ft_putstr_fd(pipex_data.cmd_2[0], 2);
-		ft_putendl_error(": command not found");
-	}
-	exit(127);
+	command_not_found(pipex_data.cmd_2, pipex_data.cmd_1);
 }
 
 void	execute_cmd_1(t_pipex_data pipex_data, int *pipe_fd)
@@ -63,25 +70,24 @@ void	execute_cmd_1(t_pipex_data pipex_data, int *pipe_fd)
 	int		fd_infile;
 
 	if (close(pipe_fd[0]) == -1)
-	{
+	{//one fd and error
 		close(pipe_fd[1]);
 		error_happened(-1, "close pipe_fd[0] in cmd_1");
 	}
-	ft_printf("\t\tHEllO!!\n");//debug
 	fd_infile = open(pipex_data.infile, O_RDONLY);
 	if (fd_infile == -1)
-	{
+	{//one fd and error
 		close(pipe_fd[1]);
 		error_happened(-1, "No such file or directory");
 	}
 	if (dup2(fd_infile, 0) == -1 || dup2(pipe_fd[1], 1) == -1)
-	{
+	{//two fds and error
 		close(pipe_fd[1]);
 		close(fd_infile);
 		error_happened(-1, "dup2() in cmd_1");
 	}
 	if (close(fd_infile) == -1)
-	{
+	{//one fd and error
 		close(pipe_fd[1]);
 		error_happened(-1, "close fd_infile in cmd_1");
 	}
@@ -93,12 +99,5 @@ void	execute_cmd_1(t_pipex_data pipex_data, int *pipe_fd)
 		execve(path_to_execute, pipex_data.cmd_1, pipex_data.envp);
 		free(path_to_execute);
 	}
-	if (pipex_data.cmd_1[0] == 0)
-		ft_putendl_error("Command '' not found");	
-	else
-	{
-		ft_putstr_fd(pipex_data.cmd_1[0], 2);
-		ft_putendl_error(": command not found");
-	}
-	exit(127);
+	command_not_found(pipex_data.cmd_1, pipex_data.cmd_2);
 }

@@ -6,7 +6,7 @@
 /*   By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 18:37:22 by enrgil-p          #+#    #+#             */
-/*   Updated: 2025/06/26 22:19:15 by enrgil-p         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:45:27 by enrgil-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void free_cmd(char **cmd)
 	int	i;
 
 	i = 0;
-	while (cmd[i] > 0)
+	while (cmd[i])
 		free(cmd[i++]);
 	free(cmd);
 }
