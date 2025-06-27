@@ -6,18 +6,15 @@
 /*   By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 18:37:22 by enrgil-p          #+#    #+#             */
-/*   Updated: 2025/06/27 20:13:59 by enrgil-p         ###   ########.fr       */
+/*   Updated: 2025/06/27 20:45:12 by enrgil-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	error_happened(int failure, char *place, t_pipex_data pipex_data)
+void	error_happened(char *place, t_pipex_data pipex_data)
 {
-	ft_putstr_fd("Error. ", 2);
-	if (failure == 0)
 		ft_putendl_error("Expected: './pipex file1 cmd1 cmd2 file2'");
-	if (failure == -1)
 	{
 		ft_putstr_fd("Fail executing ", 2);
 		ft_putendl_error(place);
@@ -30,14 +27,14 @@ void	error_happened(int failure, char *place, t_pipex_data pipex_data)
 void	close_a_fd_and_error(int fd, char *place, t_pipex_data ppx_d)
 {
 	close(fd);
-	error_happened(fail, place, ppx_d);
+	error_happened(place, ppx_d);
 }
 
 void	close_fds_and_error(int fd1, int fd2, char *place, t_pipex_data ppx_d)
 {
 	close(fd1);
 	close(fd2);
-	error_happened(fail, place, ppx_d);
+	error_happened(place, ppx_d);
 }
 
 void free_cmd(char **cmd)

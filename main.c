@@ -6,7 +6,7 @@
 /*   By: enrgil-p <enrgil-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 13:39:23 by enrgil-p          #+#    #+#             */
-/*   Updated: 2025/06/27 20:30:29 by enrgil-p         ###   ########.fr       */
+/*   Updated: 2025/06/27 20:44:29 by enrgil-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,14 @@ int	main(int argc, char **argv, char **enviroment_list)
 
 	if (argc != 5)
 	{
-
-
+		ft_putstr_fd("Error. ", 2);
+		ft_putendl_error("Expected: './pipex file1 cmd1 cmd2 file2'");
+		exit(EXIT_FAILURE);
 	}
 	if (pipe(pipe_fd) == -1)
 	{
-
-
+		ft_putendl_error("Error in pipe()");
+		exit(EXIT_FAILURE);
 	}
 	storage_data(&pipex_data, argv, enviroment_list);
 	status = pipe_and_execute_cmds(pipex_data, pipe_fd);
